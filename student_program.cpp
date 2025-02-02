@@ -1,24 +1,34 @@
 #include <stdio.h>
+#include <string.h>
 
-void reverse(char str1[], char str2[]) ;
+char* reverse(char str1[]);
 
 int main() {
-    char text[50] = "I Love You";
-    char out[50];
-    
-    reverse(text, out);
+    char text[50];
+
+    printf("Enter str1 : ");
+    fgets(text, sizeof(text), stdin);
+
+    text[strcspn(text, "\n")] = '\0';
+
+    char *output = reverse(text);
+
+    printf("MAIN : %s\n", output);
 
     return 0;
 }
 
-void reverse(char str1[], char str2[]) {
-    int length = 0;
-    
-    while (str1[length] != '\0') length++ ;
-    for (int i = 0; i < length; i++) {
-        str2[i] = str1[length - i - 1];
+char* reverse(char str1[]) {
+    int len = strlen(str1);
+    int i, j;
+    char temp;
+
+    for (i = 0, j = len - 1; i < j; i++, j--) {
+        temp = str1[i];
+        str1[i] = str1[j];
+        str1[j] = temp;
     }
 
-    printf("word step back : %s\n", str2);  
-
+    printf("FUNC : %s\n", str1);
+    return str1;
 }
