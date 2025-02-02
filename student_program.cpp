@@ -17,7 +17,6 @@ int main() {
 
     return 0;
 }
-
 char* reverse(char str1[]) {
     int len = strlen(str1);
     int i, j;
